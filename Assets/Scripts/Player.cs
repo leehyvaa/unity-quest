@@ -1,18 +1,19 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityStandardAssets.CrossPlatformInput;
 
 public class Player : Mover,IlivingThingsSet
 {
     [SerializeField]
     private int hitPoints;
-    
+    public Vector2 moveDir;
 
     public int HitPoints { get { return hitPoints; } set{ hitPoints = value; }}
 
     void Start()
     {
-
+        moveDir = Vector2.zero;
     }
 
 
@@ -56,12 +57,45 @@ public class Player : Mover,IlivingThingsSet
 
     protected override void Move()
     {
+      
         //무브하다가 nearby가 true가 나오면 이동턴을 하나 쓴것으로 간주
         //플레이어 로케이션을 새로 이동한 지점으로 옮긴다
         //조작하다가 키보드 away가 나온 경우 자신의 로케이션으로 순간이동시킨다.
-        
-        
-        if(Nearby())
+
+
+        // 움직임 벡터 계산
+        Vector3 movement = new Vector3(moveDir.x, 0f, moveDir.y);
+        movement.Normalize();
+
+
+        if (movement.x == 0 && movement.z == 0)
+            return;
+        if (movement.x < movement.z)
+        {
+            if(movement.z < -movement.x)
+            {
+                transform.Translate(new Vector3(-1,0,0) * 1 * Time.deltaTime);
+            }
+            else
+            {
+                transform.Translate(new Vector3(0, 0, 1) * 1 * Time.deltaTime);
+            }
+        }
+        else
+        {
+            if (movement.z > -movement.x)
+            {
+                transform.Translate(new Vector3(1, 0, 0) * 1 * Time.deltaTime);
+            }
+            else
+            {
+                transform.Translate(new Vector3(0, 0, -1) * 1 * Time.deltaTime);
+            }
+        }
+
+
+
+        if (Nearby())
         {
             //여기서 스택 하나 까고 만약 스택이 0이면 state를 attack으로 
         }

@@ -10,17 +10,22 @@ public class GameCenter : MonoBehaviour
     GameObject playerPrefab;
     private GameObject player;
 
-    // Start is called before the first frame update
-    void Start()
+    private void Awake()
     {
         //플레이어 생성
         playerPrefab = Resources.Load<GameObject>("Prefabs/Player");
 
-        player = Instantiate<GameObject>(playerPrefab, new Vector3(Constants.MapSizeX-1, 1.5f, Constants.MapSizeZ / 2), Quaternion.identity, transform);
+        player = Instantiate<GameObject>(playerPrefab, new Vector3(Constants.MapSizeX - 1, 1.5f, Constants.MapSizeZ / 2), Quaternion.identity, transform);
         mover.Add(player.GetComponent<Player>());
 
         //몬스터 생성
         //아이템 생성
+    }
+
+    // Start is called before the first frame update
+    void Start()
+    {
+       
 
 
         StartCoroutine(Turn());

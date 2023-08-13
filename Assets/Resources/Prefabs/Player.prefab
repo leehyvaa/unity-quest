@@ -115,3 +115,4 @@ MonoBehaviour:
   moveStack: 0
   moverState: 0
   hitPoints: 0
+  moveDir: {x: 0, y: 0}
