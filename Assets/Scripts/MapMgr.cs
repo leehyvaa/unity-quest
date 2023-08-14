@@ -6,7 +6,7 @@ static class Constants
 {
     public const int MapSizeX = 16;
     public const int MapSizeZ = 9;
-
+    public const int TileInterval= 1;
 
 
 }
