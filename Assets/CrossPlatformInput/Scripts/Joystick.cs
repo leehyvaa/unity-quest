@@ -95,7 +95,7 @@ namespace UnityStandardAssets.CrossPlatformInput
 			transform.position = new Vector3(m_StartPos.x + newPos.x, m_StartPos.y + newPos.y, m_StartPos.z + newPos.z);
 			UpdateVirtualAxes(transform.position);
 
-			player.moveDir = new Vector2(newPos.x, newPos.y);
+			player.MoveDir = new Vector2(newPos.x, newPos.y);
 		}
 
 
@@ -103,7 +103,7 @@ namespace UnityStandardAssets.CrossPlatformInput
 		{
 			transform.position = m_StartPos;
 			UpdateVirtualAxes(m_StartPos);
-			player.moveDir = Vector2.zero;
+			player.MoveDir = Vector2.zero;
 
 		}
 

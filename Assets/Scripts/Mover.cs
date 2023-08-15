@@ -20,17 +20,17 @@ public enum State
 public abstract class Mover : MonoBehaviour
 {
     [SerializeField]
-    private int moveInterval;
+    private float moveInterval;
     [SerializeField]
-    private POINT location;
+    private Vector2 location;
     [SerializeField]
     private int moveStack;
     [SerializeField]
     private State moverState = State.NONE;
 
 
-    public int MoveInterval { get { return moveInterval; } set { moveInterval = value; } }
-    public POINT Location { get { return location; } set { location = value; } }
+    public float MoveInterval { get { return moveInterval; } set { moveInterval = value; } }
+    public Vector2 Location { get { return location; } set { location = value; } }
     public int MoveStack { get { return moveStack; } set { moveStack = value; } }
     public State MoverState { get { return moverState; } set { moverState = value; } }
 
@@ -38,7 +38,12 @@ public abstract class Mover : MonoBehaviour
 
     protected virtual bool Nearby()
     {
-        return true;
+        if(Vector2.Distance(location, new Vector2(transform.position.x,transform.position.z)) >moveInterval/2)
+        {
+            return true;
+        }
+
+        return false;
     }
     protected abstract void Move();
 
