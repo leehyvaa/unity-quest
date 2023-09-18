@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityStandardAssets.CrossPlatformInput;
 
@@ -7,8 +8,13 @@ public class Player : Mover,IlivingThingsSet
 {
     [SerializeField]
     private int hitPoints;
+<<<<<<< HEAD
     private Vector2 moveDir;
     private ATTACK_DIR attackDir;
+=======
+    public Vector2 moveDir;
+    private AttackDir attackDir;
+>>>>>>> 744b0c7b9661f15db7299219304918d713d7edbd
 
     public int HitPoints { get { return hitPoints; } set{ hitPoints = value; }}
     public Vector2 MoveDir { get { return moveDir; } set { moveDir = value; }}
@@ -22,14 +28,28 @@ public class Player : Mover,IlivingThingsSet
         NONE,
     }
 
+    enum AttackDir
+    {
+        Up,
+        Down,
+        Left,
+        Right,
+        NONE,
+    }
+
     void Start()
     {
         attackDir = ATTACK_DIR.NONE;
         moveDir = Vector2.zero;
+<<<<<<< HEAD
         MoveStack = 2;
         MoveInterval = 1;
         transform.rotation = Quaternion.Euler(0f, 180f, 0f);
 
+=======
+        HitPoints = 5;
+        attackDir = AttackDir.NONE;
+>>>>>>> 744b0c7b9661f15db7299219304918d713d7edbd
     }
 
 
@@ -76,12 +96,18 @@ public class Player : Mover,IlivingThingsSet
 
     protected override void Move()
     {
+<<<<<<< HEAD
         
       
         //무브하다가 nearby가 true가 나오면 이동턴을 하나 쓴것으로 간주
         //플레이어 로케이션을 새로 이동한 지점으로 옮긴다
         //조작하다가 키보드 away가 나온 경우 자신의 로케이션으로 순간이동시킨다.
+=======
+>>>>>>> 744b0c7b9661f15db7299219304918d713d7edbd
 
+        if (MoveStack <= 0)
+            MoverState = State.ATTACK;
+            
 
         // 움직임 벡터 계산
         Vector3 movement = new Vector3(moveDir.x, 0f, moveDir.y);
@@ -94,14 +120,18 @@ public class Player : Mover,IlivingThingsSet
             return;
         }
 
+<<<<<<< HEAD
         if (MoveStack <= 0)
             MoverState = State.ATTACK;
 
+=======
+>>>>>>> 744b0c7b9661f15db7299219304918d713d7edbd
 
         if (movement.x < movement.z)
         {
             if(movement.z < -movement.x)
             {
+<<<<<<< HEAD
                 transform.Translate(new Vector3(-1,0,0) * 1 * Time.deltaTime, Space.World);
                 attackDir = ATTACK_DIR.LEFT;
             }
@@ -109,6 +139,15 @@ public class Player : Mover,IlivingThingsSet
             {
                 transform.Translate(new Vector3(0, 0, 1) * 1 * Time.deltaTime,Space.World);
                 attackDir = ATTACK_DIR.UP;
+=======
+                transform.Translate(new Vector3(-1,0,0) * 1 * Time.deltaTime);
+                attackDir = AttackDir.Left;
+            }
+            else
+            {
+                transform.Translate(new Vector3(0, 0, 1) * 1 * Time.deltaTime);
+                attackDir = AttackDir.Up;
+>>>>>>> 744b0c7b9661f15db7299219304918d713d7edbd
             }
 
         }
@@ -116,6 +155,7 @@ public class Player : Mover,IlivingThingsSet
         {
             if (movement.z > -movement.x)
             {
+<<<<<<< HEAD
                 transform.Translate(new Vector3(1, 0, 0) * 1 * Time.deltaTime, Space.World);
                 attackDir = ATTACK_DIR.RIGHT;
             }
@@ -123,17 +163,30 @@ public class Player : Mover,IlivingThingsSet
             {
                 transform.Translate(new Vector3(0, 0, -1) * 1 * Time.deltaTime, Space.World);
                 attackDir = ATTACK_DIR.DOWN;
+=======
+                transform.Translate(new Vector3(1, 0, 0) * 1 * Time.deltaTime);
+                attackDir = AttackDir.Right;
+            }
+            else
+            {
+                transform.Translate(new Vector3(0, 0, -1) * 1 * Time.deltaTime);
+                attackDir = AttackDir.Down;
+>>>>>>> 744b0c7b9661f15db7299219304918d713d7edbd
             }
 
         }
 
 
+        
 
         if (Nearby())
         {
             Location = new Vector2(Mathf.Round(transform.position.x), Mathf.Round(transform.position.z));
             MoveStack--;
+<<<<<<< HEAD
             
+=======
+>>>>>>> 744b0c7b9661f15db7299219304918d713d7edbd
             //여기서 스택 하나 까고 만약 스택이 0이면 state를 attack으로 
         }
     }
@@ -143,6 +196,7 @@ public class Player : Mover,IlivingThingsSet
         transform.position = new Vector3(Location.x, 1.5f, Location.y);
         //서치한 해당 대상에게 데미지를 주고 자신의 State를 종료로 변경
 
+<<<<<<< HEAD
         Vector3 movement = new Vector3(moveDir.x, 0f, moveDir.y);
         movement.Normalize();
 
@@ -189,7 +243,13 @@ public class Player : Mover,IlivingThingsSet
             default:
                 break;
         }
+=======
+>>>>>>> 744b0c7b9661f15db7299219304918d713d7edbd
     }
 
     
+    public void TurnEnd()
+    {
+        MoverState = State.END;
+    }
 }
