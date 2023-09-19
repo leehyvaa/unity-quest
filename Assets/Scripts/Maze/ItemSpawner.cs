@@ -79,17 +79,21 @@ public class ItemSpawner : MonoBehaviour
 
         CoinGetter playerGetter = player.GetComponent<CoinGetter>();
         playerGetter.SetCallback(PlayerGetCoin);
+
+
         CoinGetter enemyGetter = enemy.GetComponent<CoinGetter>();
         enemyGetter.SetCallback(EnemyGetCoin);
 
         enemy.target = player.gameObject;
+        enemy.player = player.transform;
+
 
         for (int i = 0; i < coins.childCount; i++)
         {
             arrCoin.Add(coins.GetChild(i).gameObject);
             coins.GetChild(i).gameObject.SetActive(false);
         }
-        countdown = 10;
+        countdown = 30;
 
         playerCoinText = UIRoot.GetChild(0).GetComponent<TextMeshProUGUI>();
         enemyCoinText = UIRoot.GetChild(1).GetComponent<TextMeshProUGUI>();
@@ -151,12 +155,19 @@ public class ItemSpawner : MonoBehaviour
 
     void CoinSpawn()
     {
-
-
         int num = Random.Range(0, arrCoin.Count - 1);
         arrCoin[num].gameObject.SetActive(true);
 
-
+        for (int i = 0; i < arrCoin.Count-1; i++)
+        {
+            if (arrCoin[i].gameObject.activeSelf)
+            {
+                enemy.coin = arrCoin[i].transform;
+                player.GetComponentInChildren<MazeArrow>().coin = arrCoin[i].transform;
+                Debug.Log("coin Set");
+            }
+        }
+        
     }
 
     void PlayerGetCoin()
@@ -169,7 +180,7 @@ public class ItemSpawner : MonoBehaviour
     {
         enemyScore++;
         CoinSpawn();
-
+       
     }
 
 }

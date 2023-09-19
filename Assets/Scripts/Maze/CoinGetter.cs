@@ -9,6 +9,7 @@ public class CoinGetter : MonoBehaviour
     public delegate void Callback_OnGetCoin();
     Callback_OnGetCoin onGetCoin;
 
+
     // Start is called before the first frame update
     void Start()
     {
@@ -27,13 +28,13 @@ public class CoinGetter : MonoBehaviour
         {
             if(gameObject.tag == "Player")
             {
-                onGetCoin();
                 other.gameObject.SetActive(false);
+                onGetCoin();
             }
             else if (gameObject.tag =="Enemy")
             {
-                onGetCoin();
                 other.gameObject.SetActive(false);
+                onGetCoin();
 
             }
         }
@@ -43,7 +44,7 @@ public class CoinGetter : MonoBehaviour
     {
         if (onGetCoin != null)
         {
-            //Debug.LogWarning(string.Format("[Player ID : {0}] ¿ÃπÃ º≥¡§µ  SetCallback() - name : {1} ", ID, name));
+            Debug.LogWarning(string.Format("¿ÃπÃ º≥¡§µ  SetCallback() - name : {1} "));
             return;
         }
         onGetCoin = callback_OnGetCoin;
