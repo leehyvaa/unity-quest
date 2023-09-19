@@ -25,18 +25,18 @@ public class PlayerMoving : PlayerState
 
     public override void UpdatePhysics()
     {
-        base.UpdatePhysics();
-        Vector2 vel = sm.rigidbody.velocity;
-        vel.x = _horizontalInput * ((MovementSM)stateMachine).speed;
-        sm.rigidbody.velocity = vel;
+        //base.UpdatePhysics();
+        //Vector2 vel = sm.rigidbody.velocity;
+        //vel.x = _horizontalInput * ((MovementSM)stateMachine).speed;
+        //sm.rigidbody.velocity = vel;
 
 
-        Vector3 dir = foward.transform.position - transform.position;
-        dir.Normalize();
+        //Vector3 dir = foward.transform.position - transform.position;
+        //dir.Normalize();
 
-        Vector3 move = dir * engine;
-        Vector3 newPos = sm.rigidbody.position + move * moveSpeed * Time.deltaTime;
-        sm.rigidbody.MovePosition(newPos);
+        //Vector3 move = dir * engine;
+        //Vector3 newPos = sm.rigidbody.position + move * moveSpeed * Time.deltaTime;
+        //sm.rigidbody.MovePosition(newPos);
     }
 
 }

@@ -32,7 +32,7 @@ public class PlayerJumping : BaseState
     public override void UpdatePhysics()
     {
         base.UpdatePhysics();
-        _grounded = _sm.rigidbody.velocity.y < Mathf.Epsilon && _sm.rigidbody.IsTouchingLayers(_groundLayer);
+        //_grounded = _sm.rigidbody.velocity.y < Mathf.Epsilon && _sm.rigidbody.IsTouchingLayers(_groundLayer);
     }
 
 }

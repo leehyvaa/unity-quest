@@ -8,20 +8,20 @@ public class MecanimControl : MonoBehaviour
 {
 
 
-    enum MoveSpeedSetting
+    public enum MoveSpeedSetting
     {
         attackingMoveSpeed = 1,
-        fightMoveSpeed = 6,
-        defaultMoveSpeed= 10,
+        fightMoveSpeed = 3,
+        defaultMoveSpeed= 5,
 
     }
 
     //이동,회전 변수 및 배율
     public float moveSpeed = (float)MoveSpeedSetting.defaultMoveSpeed;
-    private float tempMoveSpeed;
+    public float tempMoveSpeed;
 
 
-    public float runningCoef = 2f;
+    public float runningCoef = 1.5f;
 
 
     public float rotationSpeed = 720.0f;
@@ -35,14 +35,14 @@ public class MecanimControl : MonoBehaviour
 
 
     Vector3 moveInput;
-
+    Vector3 moveDir;
 
     //컴퍼넌트들
     public WeaponManager weaponmanager;
     public Transform characterBody;
     public Transform cameraArm;
     CharacterController pcController;
-    Animator animator;
+    public Animator animator;
 
 
     public PlayerState pState = PlayerState.P_Idle;
@@ -58,19 +58,22 @@ public class MecanimControl : MonoBehaviour
 
     private void FixedUpdate()
     {
-
+        Move();
     }
 
     // Update is called once per frame
     void Update()
     {
         Input_Animation();
-        CharacterController_Slerp();
+        //CharacterController_Slerp();
+
+        Running();
+        CursorControll();
     }
 
     private void LateUpdate()
     {
-
+        LookAround();
     }
 
     public void SetState(PlayerState state)
@@ -156,16 +159,17 @@ public class MecanimControl : MonoBehaviour
         moveInput = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
         if (moveInput.sqrMagnitude > 0.01f)
         {
-            Vector3 forword = Vector3.Slerp(transform.forward, moveInput, rotationSpeed * Time.deltaTime / Vector3.Angle(transform.forward, moveInput));
-            transform.LookAt(transform.position + forword);
+            Vector3 camForward = new Vector3(cameraArm.forward.x,0f,cameraArm.forward.z);
+            Vector3 forword = Vector3.Slerp(characterBody.forward, camForward, rotationSpeed * Time.deltaTime / Vector3.Angle(characterBody.forward, moveInput));
+            characterBody.LookAt(transform.position + forword);
         }
         else
         {
 
         }
 
-        animator.SetFloat("Speed", pcController.velocity.magnitude);
-        pcController.Move(moveInput * moveSpeed * Time.deltaTime + Physics.gravity * Time.deltaTime);
+        //animator.SetFloat("Speed", pcController.velocity.magnitude);
+        //pcController.Move(moveInput * moveSpeed * Time.deltaTime + Physics.gravity * Time.deltaTime);
 
         if (Input.GetKeyDown(KeyCode.F))
         {
@@ -218,7 +222,57 @@ public class MecanimControl : MonoBehaviour
         animator.SetFloat("FightingBlend", fightingToggle);
 
     }
+    private void Move()
+    {
+        moveInput = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
 
+
+        if (moveInput.magnitude != 0)
+        {
+            Vector3 lookForward = new Vector3(cameraArm.forward.x, 0f, cameraArm.forward.z).normalized;
+            Vector3 lookRight = new Vector3(cameraArm.right.x, 0f, cameraArm.right.z).normalized;
+            moveDir = lookForward * moveInput.z + lookRight * moveInput.x;
+
+
+            Vector3 forword = Vector3.Slerp(characterBody.forward, moveDir, rotationSpeed * Time.deltaTime / Vector3.Angle(characterBody.forward, moveDir));
+            characterBody.LookAt(transform.position + forword);
+            
+            if (isRunning)
+            {
+
+                //characterBody.forward = moveDir;
+
+                pcController.Move(moveDir * moveSpeed * runningCoef * Time.deltaTime);
+                // 스페이스바 누르면 구르기
+                //if (Input.GetKeyDown(KeyCode.Space))
+                //    StartCoroutine(Roll(moveDir));
+
+
+            }
+            else
+            {
+                //characterBody2.rotation = Quaternion.Euler(characterBody.rotation.x, characterBody.rotation.y + 45f, characterBody.rotation.z);
+
+                if (pState == PlayerState.P_Aiming)
+                    characterBody.forward = cameraArm.right;
+                else
+                    //characterBody.forward = moveDir;
+
+                pcController.Move(moveDir * moveSpeed * Time.deltaTime);
+                // 스페이스바 누르면 구르기
+                //if (Input.GetKeyDown(KeyCode.Space))
+                //    StartCoroutine(Roll(moveDir));
+
+
+
+            }
+
+            //transform.position += moveDir * Time.deltaTime * 5f;
+        }
+        //레이로 이동방향 확인
+        //Debug.DrawRay(cameraArm.position, new Vector3(cameraArm.forward.x, 0f, cameraArm.forward.z).normalized, Color.red);
+
+    }
     private void Running()
     {
         if (Input.GetKey(KeyCode.LeftShift))

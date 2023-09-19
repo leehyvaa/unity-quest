@@ -61,7 +61,7 @@ public class BowController : MonoBehaviour
             //return;
             if (movement.aimCount>movement.aimCooltime)
             {
-                movement.SetState(Movement.PlayerState.P_Aiming);
+                movement.SetState(MecanimControl.PlayerState.P_Aiming);
 
             }
         }
@@ -73,7 +73,7 @@ public class BowController : MonoBehaviour
     }
     private void FixedUpdate()
     {
-        movement.ani.SetBool("Aming", aming);
+        movement.animator.SetBool("Aming", aming);
     }
 
 
@@ -81,7 +81,7 @@ public class BowController : MonoBehaviour
     public void BowShoot()
     {
         Debug.Log("Shoot");
-        movement.moveSpeed = movement.fightMoveSpeed;
+        movement.moveSpeed = (float)MecanimControl.MoveSpeedSetting.fightMoveSpeed;
         arrow.transform.LookAt(aimPoint);
         Transform arrowPosition = arrow.transform;
         Destroy(arrow);
@@ -118,7 +118,7 @@ public class BowController : MonoBehaviour
 
     public void AimDrow()
     {
-        movement.moveSpeed = movement.fightMoveSpeed;
+        movement.moveSpeed = (float)MecanimControl.MoveSpeedSetting.fightMoveSpeed;
     }
 
 }

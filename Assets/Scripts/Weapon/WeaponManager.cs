@@ -42,7 +42,7 @@ public class WeaponManager : MonoBehaviour
     public WeaponType weaponTypeTemp; // 무기에서 맨손으로 전환할때 사용하는 변수 예를들어 맨손에서 1-x 혹은 2-x 입력
     public WeaponType weaponTypeTemp2; // 무기에서 다른무기로 전환할때 사용하는 변수 1-2 혹은 2-1 입력 
     
-    //public MecanimControl movement;
+    public MecanimControl movement;
 
 
     public GameObject Owner { get; set; }
@@ -112,12 +112,12 @@ public class WeaponManager : MonoBehaviour
     private void FixedUpdate()
     {
         //애니메이션 변수 업데이트
-        movement.ani.SetInteger("wState", (int)weaponType);
-        movement.ani.SetInteger("wTemp", (int)weaponTypeTemp);
+        movement.animator.SetInteger("wState", (int)weaponType);
+        movement.animator.SetInteger("wTemp", (int)weaponTypeTemp);
 
         //movement.ani.SetBool("wState",ChangingWeapon);
-        movement.ani.SetBool("isEquipWeapon", isEquipWeapon);
-        movement.ani.SetFloat("wTypeBlend", (float)(weaponType-1));
+        movement.animator.SetBool("isEquipWeapon", isEquipWeapon);
+        movement.animator.SetFloat("wTypeBlend", (float)(weaponType-1));
     }
 
     //무기에서 다른 무기로 전환
