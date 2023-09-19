@@ -53,4 +53,13 @@ public class Enemy3D : MonoBehaviour
         }
 
     }
+
+
+    enum Enemy3DState
+    {
+        Idle,
+        Trace,
+
+    }
+
 }
