@@ -93,7 +93,7 @@ public class ItemSpawner : MonoBehaviour
             arrCoin.Add(coins.GetChild(i).gameObject);
             coins.GetChild(i).gameObject.SetActive(false);
         }
-        countdown = 30;
+        countdown = 60;
 
         playerCoinText = UIRoot.GetChild(0).GetComponent<TextMeshProUGUI>();
         enemyCoinText = UIRoot.GetChild(1).GetComponent<TextMeshProUGUI>();

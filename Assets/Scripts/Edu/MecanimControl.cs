@@ -44,6 +44,9 @@ public class MecanimControl : MonoBehaviour
     CharacterController pcController;
     public Animator animator;
 
+    public AudioSource audioSource;
+    public AudioClip audioClip;
+
 
     public PlayerState pState = PlayerState.P_Idle;
     public PlayerState pStatetemp;
@@ -106,6 +109,7 @@ public class MecanimControl : MonoBehaviour
                     SetState(PlayerState.P_Idle);
                 //if (isMove&&isRunning)
                 //    SetState(PlayerState.P_Run);
+                PlaySound(audioClip);
 
                 break;
             case PlayerState.P_Attack:
@@ -152,6 +156,19 @@ public class MecanimControl : MonoBehaviour
                 break;
         }
 
+    }
+
+    private void PlaySound(AudioClip clip)
+    {
+        if (audioSource.isPlaying) return;
+        
+        audioSource.PlayOneShot(clip);
+        
+    }
+
+    private void StopSound()
+    {
+        audioSource.Stop();
     }
 
     private void CharacterController_Slerp()
@@ -335,6 +352,9 @@ public class MecanimControl : MonoBehaviour
 
         pcController = GetComponent<CharacterController>();
         animator = GetComponent<Animator>();
+        audioSource = GetComponent<AudioSource>();
+        audioClip = Resources.Load<AudioClip>("Sounds/foot/army");
+        //audioClip = Resources.Load(string.Format("Sounds/foot/{0}", "army")) as AudioClip; 
 
         SetState(PlayerState.P_Idle);
 

@@ -204,6 +204,7 @@ GameObject:
   - component: {fileID: 2616957181976373646}
   - component: {fileID: -6728885598926845687}
   - component: {fileID: 2616957181976373683}
+  - component: {fileID: 5146142420099757942}
   m_Layer: 0
   m_Name: Player3D
   m_TagString: Player
@@ -270,6 +271,8 @@ MonoBehaviour:
   characterBody: {fileID: 2616957182007583029}
   cameraArm: {fileID: 8497199323428880745}
   animator: {fileID: 0}
+  audioSource: {fileID: 0}
+  audioClip: {fileID: 8300000, guid: 2a4a0a59b5803314ab9f4a172e79272e, type: 3}
   pState: 0
   pStatetemp: 0
   aimCooltime: 0
@@ -307,6 +310,102 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!82 &5146142420099757942
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2616957181976373647}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 1
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &2616957182008081409
 GameObject:
   m_ObjectHideFlags: 0
@@ -2324,6 +2423,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2616957182007583029}
+  - component: {fileID: 2981107316836631438}
   m_Layer: 0
   m_Name: unitychan
   m_TagString: Untagged
@@ -2349,6 +2449,30 @@ Transform:
   m_Father: {fileID: 2616957181976373680}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2981107316836631438
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2616957182008081685}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: af3156a10aa5684459e96b18b4d62b08, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bowEquipPos: {fileID: 5087256201307195426}
+  bowUnEquipPos: {fileID: 5087256200606471803}
+  weaponSloot: {fileID: 5087256201588251356}
+  leftHand: {fileID: 2616957182007582845}
+  rightHand: {fileID: 2616957182007582777}
+  sword: {fileID: 9029597470781502999}
+  bow: {fileID: 5087256201864456613}
+  isEquipWeapon: 0
+  weaponSwitchDelay: 1.15
+  weaponTypeTemp: 0
+  weaponTypeTemp2: 0
+  movement: {fileID: 0}
 --- !u!1 &2616957182008081687
 GameObject:
   m_ObjectHideFlags: 0

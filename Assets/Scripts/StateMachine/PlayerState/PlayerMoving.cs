@@ -3,7 +3,6 @@
 public class PlayerMoving : PlayerState
 {
 
-    Vector3 moveInput;
 
     public PlayerMoving(MovementSM stateMachine) : base("Moving", stateMachine) {}
 

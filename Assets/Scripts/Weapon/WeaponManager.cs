@@ -216,15 +216,7 @@ public class WeaponManager : MonoBehaviour
     }
 
 
-    public void SetCallback(Callback_CreateMonster callback_setState)
-    {
-        if (setState != null)
-        {
-            Debug.Log("이미 설정된 callback_createMonster");
-            return;
-        }
-        setState = callback_setState;
-    }
+
 
 }
 

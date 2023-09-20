@@ -9,6 +9,8 @@ public class MovementSM : StateMachine
     public Rigidbody rigidbody;
     public SpriteRenderer spriteRenderer;
 
+    public Animator ani;
+
     public Transform cameraArm;
     public Transform characterBody;
 
