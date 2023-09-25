@@ -53,4 +53,6 @@ public class GameManager : MonoBehaviour
 
     }
 
+    // : 
+    public string nextSceneName;
 }

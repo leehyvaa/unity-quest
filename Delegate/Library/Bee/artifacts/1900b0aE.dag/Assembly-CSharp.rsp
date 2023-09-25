@@ -359,6 +359,21 @@
 "Assets/Scripts/Observer/HUDController.cs"
 "Assets/Scripts/Observer/Observer.cs"
 "Assets/Scripts/Observer/Subject.cs"
+"Assets/Scripts/Strategy/BoppingManeuver.cs"
+"Assets/Scripts/Strategy/ClientStrategy.cs"
+"Assets/Scripts/Strategy/Drone.cs"
+"Assets/Scripts/Strategy/FallbackManeuver.cs"
+"Assets/Scripts/Strategy/IManeuverBehaviour.cs"
+"Assets/Scripts/Strategy/WeavingManeuver.cs"
+"Assets/Scripts/Visitor/BikeController.cs"
+"Assets/Scripts/Visitor/BikeEngine.cs"
+"Assets/Scripts/Visitor/BikeShield.cs"
+"Assets/Scripts/Visitor/BikeWeapon.cs"
+"Assets/Scripts/Visitor/ClientVisitor.cs"
+"Assets/Scripts/Visitor/IBikeElement.cs"
+"Assets/Scripts/Visitor/IVisitor.cs"
+"Assets/Scripts/Visitor/PickUp.cs"
+"Assets/Scripts/Visitor/PowerUp.cs"
 -langversion:9.0
 
 /deterministic
